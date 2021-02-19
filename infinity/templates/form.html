@@ -1,0 +1,61 @@
+
+{% load static %}
+
+
+
+<div class="mt-5 p-lg-5" id="background">
+    <div class="row">
+        <div class="col-lg-5 col-md-12 col-sm-12 bg-white shadow-sm  mb-5  p-5">
+            <div class=" hover-effect text-light p-5 " style="border-radius:3%;">
+                <h4> <i class="fa fa-map-marker"></i> OUR OFFICE ADDRESS?</h4>
+                <p class="mb-3">
+                    INFINITY, 705 Okay Plus Square, Patel Marg, Madhyam Marg,, Mansarovar, Jaipur, Rajasthan
+                    302020
+                </p>
+                <h4 class="">GENERAL ENQUIRIES</h4>
+                <p>
+                    <i class="fa mb-3 fa-envelope" aria-hidden="true"></i> infinity.incometax@gmail.com
+                </p>
+                <h4 class="">CALL US</h4>
+                <i class=" mb-3 fa fa-phone">+91-9269123450
+                    +91-9001123450 | 0141-3596221</i>
+
+                <h4>OUR TIMING</h4>
+                Mon - Sat : 10:00 AM - 07:00 PM Sun : Closed
+            </div>
+        </div>
+
+        <div class=" col-lg-6  col-md-12 col-sm-12 mx-5 bg-white  mb-5 shadow-lg p-5" style="border-radius: 2%;">
+            <h3 class="text-center">CONTACT FORM</h3>
+            <form action="{% url 'user_detail' %}" method="POST" enctype="multipart/form-data"
+                class="form-group">
+                {% csrf_token %}
+                <div class="form-row pb-2">
+                    <div class="col">
+                        <label for="username">Username : </label>
+                        <input class="form-control" type="text" name="username" id="username">
+                    </div>
+                    <div class="col">
+                        <label for="email">Email : </label>
+                        <input class="form-control" type="email"  name="email" id="email">
+                    </div>
+                </div>
+                    <div class="form-row pb-2">
+                    <div class="col">
+                        <label for="number">Mobile Number : </label>
+                        <input class="form-control" type="text" name="mob_number" id="number">
+                    </div>
+                    <div class="col">
+                        <label for="ref_code">Refrence Code : </label>
+                        <input class="form-control" type="text" name="ref_code" id="ref_code">
+                    </div>
+                </div>
+                <label for="message" class="mt-2">Message : </label>
+                <textarea class="form-control pt-2" name="message" id="message" cols="150" rows="5"></textarea>
+                <br>
+                <button class="btn btn-warning w-100 " type="submit"> Submit </button>
+            </form>
+        </div>
+    </div>
+    
+</div>

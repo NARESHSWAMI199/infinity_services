@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bootstrap-4.4.1-dist/css/bootstrap.min.css' %}">
+    <title>{% block head_title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        #background {
+            background-image:url('{% static  "pictures/1.jpg" %}');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: black;
+            height: 100%px;
+        }
+
+        body {
+            background-color: white;
+        }
+
+        .hover-effect {
+            background: #121212;
+            color: white;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        a { color: inherit; } 
+        .hover-effect:hover {
+            background: orange;
+            color: white;
+            /* padding: 20px; */
+            box-shadow:
+                inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+                0 0 0 0px rgb(255, 255, 255),
+                0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+        }
+    </style>
+
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body>
+    <nav class="navbar navbar-expand-lg shadow-sm  bg-white navbar-light">
+        <div class="container">
+            <div class="navbar-brand">
+                <img class="image-fluid" src="{% static 'pictures/logo.png' %}" width="250" height="70" alt="">
+            </div>
+            <button class="navbar-toggler" data-target="#nav-id" data-toggle='collapse'>
+                <span class="navbar-toggler-icon">
+                </span>
+            </button>
+
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">HOME <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">LINK</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            SEVRICES
+                        </a>
+                        <div class="dropdown-menu" id="drop_item" aria-labelledby="navbarDropdown">
+                            <small style="font-family: Georgia, 'Times New Roman', Times, serif;"> FOR MORE SERVICES
+                                CHECK HOME PAGE </small>
+                        </div>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_logout' %}">LOGOUT</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_signup' %}">SINGUP</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href=" {% url 'account_login' %} ">LOGIN</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <form class="form-inline ml-auto my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div {% if message.tags %} class="alert text-center  {{ message.tags }} alert-{{ message.tags }}" role="alert">
+        {% endif %} {{ message }}</div>
+    {% endfor %}
+    {% endif %}
+
+    {% block content %}
+
+    {% endblock %}
+
+    <div class="container-fluid">
+
+      <hr style="border: 0px;">
+
+        <div class="hover-effect text-light p-5" style="border-radius: 5%;">
+            <div class="row">
+                <div class="col-lg-3  mb-2 col-md-3 col-sm-12">
+                    <h4>CONTACT US</h4>
+                    <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> <i
+                            class="fa fa-map-marker"> </i> 705 Okay Plus Square, Patel Marg, Madhyam Marg, Mansarovar,
+                        Jaipur, 302020, Rajasthan </p>
+                    <i class="fa fa-phone"></i> +91-9828255233
+
+                    <i class="fa fa-envelope" aria-hidden="true"></i> infinity.incometax@gmail.com
+                </div>
+
+                <div class="col-lg-3  mb-2 col-md-3 col-sm-12">
+                    <h4>OUR SERVICES</h4>
+                    <small class=""
+                        style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                        <li> Company Registration</li>
+                        <li> NGO Registration</li>
+                        <li> Society Registration</li>
+                        <li>80G Registration</li>
+                        <li> Food License Registration</li>
+                    </small>
+                </div>
+
+                <div class="col-lg-3 mb-2 col-md-3 col-sm-12">
+                    <h4>OUR SERVICES</h4>
+                    <small class=""
+                        style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                        <li> OUR SERVICES </li>
+                        <li> Trademark Registration </li>
+                        <li> Trust Registration </li>
+                        <li> GST Registration </li>
+                        <li> FCRA Registration </li>
+                        <li> Firm Registration </li>
+                    </small>
+                </div>
+
+                <div class="col-lg-3 mb-2 col-md-3 col-sm-12">
+                    <h4>OUR LOCATION</h4>
+                    <div class="mapouter">
+                        <div class="gmap_canvas"><iframe width="300" height="248" id="gmap_canvas"
+                                src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                                frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a
+                                href="https://yt2.org/youtube-to-mp3-ALeKk00qEW0sxByTDSpzaRvl8WxdMAeMytQ1611842368056QMMlSYKLwAsWUsAfLipqwCA2ahUKEwiikKDe5L7uAhVFCuwKHUuFBoYQ8tMDegUAQCSAQCYAQCqAQdnd3Mtd2l6"></a><br>
+                            <style>
+                                .mapouter {
+                                    position: relative;
+                                    text-align: right;
+                                    height: 248px;
+                                    width: 300px;
+                                }
+                            </style>
+                            <style>
+                                .gmap_canvas {
+                                    overflow: hidden;
+                                    background: none !important;
+                                    height: 248px;
+                                    width: 300px;
+                                }
+                            </style>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                #hr {
+                    border: 1px solid white;
+                }
+            </style>
+            <hr id="hr">
+
+            <div class="text-center ">
+                <a href=""><i class="fa fa-facebook text-light mx-2 text-center "></i></a>
+                <a href=""> <i class="fa fa-twitter mx-3 text-light"> </i> </a>
+                <a href=""> <i class="fa fa-instagram  text-light"> </i> </a>
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+
+    <div class="footer mt-3 mb-3 text-center">
+        <img src="{% static 'pictures/circle-cropped(1).png' %}" height="30px" alt=""> @ Devolped by NSFUNTU S
+    </div>
+
+    <!-- SCRIPT-->
+
+    <script src=" {% static 'bootstrap-4.4.1-dist/js/bootstrap.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+    <!-- ristrict image downloads -->
+    <script>
+        (function ($) {
+            $(document).on('contextmenu', 'img', function () {
+                return false;
+            })
+        })(jQuery);
+
+        $(document).ready(function () {
+            //Disable full page
+            $('body').bind('cut copy paste', function (e) {
+                e.preventDefault();
+            });
+
+            //Disable part of page
+            $('#id').bind('cut copy paste', function (e) {
+                e.preventDefault();
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>
