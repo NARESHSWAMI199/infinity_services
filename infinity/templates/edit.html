@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 p-5 shadow-sm offset-lg-2 ">
+            <form action="." method="POST" class="form-group" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label class="d-flex justify-content-center p-3" class="image-rounded-circle" for="id_image"> <img
+                        id='profile' src="{% static 'pictures/unnamed.png' %}" class='image-fluid rounded-circle shadow-sm' width=80 height=80 mr-2 alt=""></label>
+                <input style="display:none;" id="id_image" name="image" type="file">
+                <div class="form-row">
+                    <div class="col">
+                        <label for="id_first_name">First Name</label>
+                        <input class="form-control" name="first_name" id='id_first_name' type="text">
+                    </div>
+                    <div class="col">
+                        <label for="id_last_name">Last Name</label>
+                        <input class="form-control" name="last_name" id="id_last_name" type="text">
+                    </div>
+                </div>
+                <label for="id_ref_code">Refrence Code</label>
+                <input type="text" class="form-control" name="ref_code" id="id_ref_code">
+                <button type="submit" class="btn mt-2 btn-warning w-100"> Save Profile </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+
+    const profile = document.getElementById('profile')
+    const username = document.getElementById('username')
+
+    const method = 'GET'
+    const url = "http://127.0.0.1:8000/usr_profile/"
+    const xhr = new XMLHttpRequest()
+    xhr.responseType = 'json'
+
+    xhr.open(method, url)
+    xhr.onload = function () {
+        const server_response = xhr.response
+        return profile.setAttribute('src', server_response['image'])
+
+    }
+    xhr.send()
+
+</script>
+
+
+{% endblock %}

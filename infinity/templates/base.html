@@ -25,6 +25,11 @@
             background-color: white;
         }
 
+        .bg-dar {
+            background: #121212;
+            color: white;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
         .hover-effect {
             background: #121212;
             color: white;
@@ -63,9 +68,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/">HOME <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">LINK</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -78,14 +80,18 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_logout' %}">LOGOUT</a>
+                        <a class="nav-link" href="{% url 'profiles:dashboard' %}">DASHBORD</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'accounts:logout' %}">LOGOUT</a>
+                    </li>
+                 
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_signup' %}">SINGUP</a>
+                        <a class="nav-link" href="{% url 'accounts:signup' %}">SINGUP</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href=" {% url 'account_login' %} ">LOGIN</a>
+                        <a class="nav-link" href=" {% url 'accounts:login' %} ">LOGIN</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -112,14 +118,14 @@
 
       <hr style="border: 0px;">
 
-        <div class="hover-effect text-light p-5" style="border-radius: 5%;">
+        <div class="bg-dar text-light p-5" style="border-radius: 5%;">
             <div class="row">
                 <div class="col-lg-3  mb-2 col-md-3 col-sm-12">
                     <h4>CONTACT US</h4>
                     <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> <i
                             class="fa fa-map-marker"> </i> 705 Okay Plus Square, Patel Marg, Madhyam Marg, Mansarovar,
                         Jaipur, 302020, Rajasthan </p>
-                    <i class="fa fa-phone"></i> +91-9828255233
+                    <i class="fa fa-phone"></i> +91-9828255233 <br>
 
                     <i class="fa fa-envelope" aria-hidden="true"></i> infinity.incometax@gmail.com
                 </div>

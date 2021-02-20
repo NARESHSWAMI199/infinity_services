@@ -9,7 +9,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('core.urls'),name='core'),
-    path('accounts/', include('allauth.urls')),
+    path('accounts/', include('accounts.urls'),name='account'),
+    path('usr_profile/',include('profiles.urls'),name='profile'),
 ]+static (
     settings.MEDIA_URL , document_root = settings.MEDIA_ROOT
 )

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5" style="font-family: Georgia, 'Times New Roman', Times, serif;">
+
+    <div id="username" class='text-center'>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3 text-center p-3" id="profile">
+            <a href="{% url 'profiles:edit' %}" class="btn btn-warning"> <i class="fa fa-edit"></i> Edit.. </a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="container">
+    <div class="shadow-sm p-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">SN</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Contact</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    {% for i in item.work.all %}
+                    <td> {{ i.title }}</td>
+                    <td> {{ i.price }}</td>
+
+                    {% endfor %}
+                    <td>{{ item.username }}</td>
+
+                    <td>{{ item.mobile_number }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<script>
+
+    const profile = document.getElementById('profile')
+    const username = document.getElementById('username')
+
+    const method = 'GET'
+    const url = "http://127.0.0.1:8000/usr_profile/"
+    const xhr = new XMLHttpRequest()
+    xhr.responseType = 'json'
+
+    xhr.open(method, url)
+    xhr.onload = function () {
+        const server_response = xhr.response
+        console.log(server_response)
+        username.innerHTML = "<h2>" + server_response['username'] + "</h2>"
+
+        var content = profile.innerHTML
+        var new_content = "<img src=" + server_response.image + "  width=250px height=250px  class='image-fluid rounded-circle mb-2' >" +
+            " <h4>" + server_response['first_name'] + " " + server_response['last_name'] + " </h4> " +
+            "<p> " + server_response['ref_code'] + " </p>"
+        return profile.innerHTML = new_content + content
+
+    }
+    xhr.send()
+
+</script>
+
+
+{% endblock %}
